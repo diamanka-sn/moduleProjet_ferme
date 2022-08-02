@@ -1,0 +1,105 @@
+<div class="container mt-4">
+    FINALISATION DE LA COMMANDE
+</div>
+<div class="container row">
+    <div class="col-md-8">
+        <div class="card m-4 card-deco">
+            <div class="card-body">
+                <h6>Detail client</h6>
+                <hr />
+                <div>
+                    <strong>{{info.nom}}</strong>
+                </div>
+                <div>
+                    {{info.adresse}}
+                </div>
+                <div>
+                    {{info.telephone}}
+                </div>
+            </div>
+        </div>
+        <div class="card m-4 card-deco">
+            <div class="card-body">
+                <h6>Mode de paiement</h6>
+                <hr />
+                <div class="mb-4">
+                    <strong style="font: size 10px;">Quel moyen de paiement voulez-vous utilisé</strong>
+                </div>
+                <div class="mt-4 mb-4">
+                    <div class="form-check mb-2 justify-content-center choix" *ngFor="let t of types">
+                        <input class="form-check-input" type="radio" name="typepaiement" id="exampleRadios{{t.id}}" value="{{t.id}}" [formControl]="typepaiement">
+                        <label class="form-check-label" for="exampleRadios{{t.id}}">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="{{t.image}}" class="img-responsive " width="400">
+                                </div>
+                                <div class="col-md-8 ml-1">
+                                    <strong>{{t.libelle}}</strong>
+                                </div>
+                            </div>
+                        </label>
+                        <hr />
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        Sous-total <span class="pull-right">{{total}} FCFA</span>
+                    </div>
+                    <div>
+                        Montant de la livraison <span class="pull-right">2000 FCFA</span>
+                    </div>
+                    <hr />
+                    <div class="mb-4">
+                        total <span class="pull-right">{{total+2000}} FCFA</span>
+                    </div>
+                    <button class="btn btn-success w-100" [disabled]="typepaiement.invalid" (click)="valider()">valider
+                        la commande</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mt-4 mb-4">
+        <div class="card card-deco">
+            <div class="card-body">
+                Votre commande ({{medicaments.length}} medicaments)
+                <hr />
+                <div>
+                    <div class="row" *ngFor="let m of medicaments">
+                        <div class="col-md-3">
+                            <img src="{{m.image}}" />
+                        </div>
+                        <div class="col-md-9 te" style="">
+                            <div>
+
+                                <strong>{{m.libelle}}</strong>
+                                <div>
+                                    {{m.prix}} FCFA
+                                </div>
+                                <small>
+                                    Qté : {{m.quantite}}
+                                </small>
+                            </div>
+                            <hr class="" />
+                        </div>
+
+                    </div>
+                </div>
+                <div>
+                    <div class="te">
+                        Sous-total <span class="pull-right">{{total}} FCFA</span>
+                    </div>
+                    <div class="te">
+                        Montant de la livraison <span class="pull-right">2000 FCFA</span>
+                    </div>
+                    <hr />
+                    <div class="mb-4 te">
+                        total <span class="pull-right">{{total+2000}} FCFA</span>
+                    </div>
+                    <hr>
+                    <a class="text-center">retour au panier </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

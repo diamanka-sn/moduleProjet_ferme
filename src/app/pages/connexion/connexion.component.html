@@ -11,16 +11,17 @@
                 <div class="card-body mt-4">
                     <h3 class="text-center">Authentification</h3>
                     <hr />
-                    <form method="POST" action="#" class="mt-4 ml-4 mr-4 mb-4" 
+                    <form method="POST" action="#" class="mt-4 ml-4 mr-4 mb-4" [formGroup]="formGroup"
                         (ngSubmit)="submit()">
                         <div class="form-group row mb-4">
                             <div class="col-md-12">
-                                <input id="login" type="text" class="form-control" name="login" formControlName="login"
+                                <input id="login" type="email" class="form-control" name="login" formControlName="login"
                                     required autocomplete="login" placeholder="entrez votre login"
                                     [ngClass]="isAuth?'is-invalid':''" autofocus>
                                 <span class="invalid-feedback" role="alert" *ngIf="isAuth">
                                     <strong style="color: red;">login ou mot de passe incorrect</strong>
                                 </span>
+                               
 
                             </div>
                         </div>
@@ -45,23 +46,20 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-
-                                <a class="btn btn-link" href="#">
-                                    mot de passe oublié?
-                                </a>
-
-                            </div>
+                            
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-12">
+                                    <strong style="color: red;"  *ngIf="erreur==true">{{errorM}}</strong>
+                               
                                 <button type="submit" class="btn btn-primary form-control"
-                                    >
-                                    <!-- {{ isLoading ? 'connexion...': 'Se connecter'}} -->
-                                    Se connecter
+                                    [disabled]="formGroup.invalid">
+                                    {{ isLoading ?'connexion...': 'Se connecter'}}
+                                   
                                     <i class="fas fa-spinner fa-pulse" *ngIf="isLoading"></i>
                                 </button>
+                                <p><a routerLink="/inscription" class="text-primary">Je n'ai pas de compte</a></p>
                             </div>
                         </div>
                     </form>

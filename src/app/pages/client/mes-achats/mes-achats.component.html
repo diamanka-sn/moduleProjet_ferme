@@ -1,0 +1,89 @@
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="card col-md-7 col-lg-12 mb-5 justify-content-center card-deco" *ngIf="lait?.length!=0">
+            <div class="container row">
+                <h5 class="mt-3 text-center">Commande lait en cours de validation </h5>
+                <hr />
+                <div class="card card-deco w-100 mb-5" *ngFor="let l of lait">
+                    <div class="row container m-4" style="align-items:center;">
+                        <div class="col-md-2">
+                            <img class="h-100 w-100" src="../../../assets/images/chariot.jpg" style="" />
+                        </div>
+                        <div class="col-md-5 text-center">
+                            <strong>{{l.capacite}} litres</strong>
+                            <strong class="float-right">{{l.date}}</strong>
+                        </div>
+                        <div class="col-md-5 mt-3">
+                            <strong>{{l.capacite * 1000}} F</strong>
+                            <button type="button" class="btn btn-danger float-right mr-2" (click)="supprimer(l)">
+                                <i class="fa fa-trash-alt mr-1"></i> <strong>supprimer</strong>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        <div class="col-md-5 col-lg-6">
+            <div class="card card-deco">
+                <div class="card-body" *ngIf="h?.length!=0">
+                    <h6>Historique achats lait</h6>
+                    <div *ngFor="let p of h">
+                        <hr />
+                        {{p.date}} <strong class="text-center ml-5">Quté: {{p.capacite}}</strong> <strong class="float-right">Cout: {{p.capacite * 1000}} F
+                            </strong>
+                        <hr />
+                    </div>
+                </div>
+                <div class="card-body" *ngIf="h?.length==0">
+                    <h6>Historique achats lait</h6>
+                    <hr />
+                    <p class="m-2 text-center">
+                        <span>Vous n'avez pas effectué d'achats</span>
+                        Parcourez nous produits et decouvrez nos meilleurs offres
+                    </p>
+                    <div class="m-4 text-center">
+                        <a class="btn btn-success" routerLink="/client">Commencez vos achats</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-5 col-lg-6">
+            <div class="card card-deco">
+                <div class="card-body">
+                    <strong>Historique Bovins</strong>
+    
+                    <hr />
+                    <i class="fas fa-spinner fa-pulse" *ngIf="isLoading"></i>
+                    <div>
+                        <div class="row" *ngFor="let p of b; let i=index">
+                            <div class="col-md-3">
+                                <img src="../../../../assets/images/bovin/{{i}}.jpg" height="70" width="70" />
+                            </div>
+                            <div class="col-md-9 te" style="">
+                                <div>
+                                    <strong>{{p.nom}} <span class="float-right">{{p.race}}</span></strong>
+                                    <div>
+                                        {{p.prix}} FCFA <span class="float-right">{{p.description}}</span>
+                                    </div>
+                                    <strong>
+                                        {{p.date}}
+                                    </strong>
+                                    <hr />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        
+                        <button class="btn btn-primary text-center white" style="color: white;" routerLink="/panier">Retour
+                            au panier </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

@@ -2,42 +2,116 @@
     <div class="text-center " style="border-radius:100px; margin: auto; width: 150px;height: 150px;">
         <img class="h-100 w-100" src="../../../assets/images/logos/kossamb.jpg" style="" />
     </div>
-    <form>
+    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputEmail4">Prenom</label>
-                <input type="text" class="form-control" id="inputEmail4" placeholder="Prenom">
+                <label for="inputEmail4">Prenom <span style="color: red ;">*</span></label>
+                <input type="text" class="form-control" formControlName="prenom" placeholder="entrez votre prenom"
+                    [ngClass]="submitErr && formGroup.invalid && formGroup.controls.prenom.errors?.required?'is-invalid':''">
+                <div class="text-danger"
+                    *ngIf="submitErr && formGroup.invalid && formGroup.controls.prenom.errors?.required">
+                    le champs prenom est obligatoire
+                </div>
             </div>
+
             <div class="form-group col-md-6">
-                <label for="inputPassword4">Nom</label>
-                <input type="text" class="form-control" id="inputPassword4" placeholder="Nom">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputEmail4">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="Adresse email">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputPassword4">Adresse</label>
-                <input type="text" class="form-control" id="inputPassword4" placeholder="Adresse">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputCity">Telephone</label>
-                <input type="number" class="form-control" id="inputCity" placeholder="Numero de telephone">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="inputzip">Mot de passe</label>
-                <input type="password" class="form-control" id="inputCity" placeholder="Mot de passe">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="inputZip">Confirmer</label>
-                <input type="password" class="form-control" id="inputZip" placeholder="Confirmer mot de passe">
+                <label for="inputPassword4">Nom <span style="color: red ;">*</span></label>
+                <input type="text" pattern="[a-zA-Z ]*" class="form-control" placeholder="entrez votre nom"
+                    formControlName="nom"
+                    [ngClass]="submitErr && formGroup.invalid && formGroup.controls.nom.errors?.required?'is-invalid':''" />
+                <div class="text-danger"
+                    *ngIf="submitErr && formGroup.invalid && formGroup.controls.nom.errors?.required">
+                    le champs nom est obligatoire
+                </div>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Inscription</button>
+
+
+
+
+
+
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Email <span style="color: red ;">*</span></label>
+                <input type="email" class="form-control" formControlName="email"
+                    placeholder="entrez votre adresse email"
+                    [ngClass]="erreurEmail || ( submitErr && formGroup.invalid && formGroup.controls.email.errors?.email|| formGroup.controls.email.errors?.required)  ?'is-invalid':''" />
+                <div class="text-danger"
+                    *ngIf="submitErr && formGroup.invalid && formGroup.controls.email.errors?.required">
+                    le champs email est obligatoire
+                </div>
+                <div class="text-danger" *ngIf="erreurEmail">
+                    l'email est déja utilisé
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Adresse <span style="color: red ;">*</span></label>
+                <input type="text" class="form-control" formControlName="adresse" placeholder="entrez votre adresse"
+                    [ngClass]="submitErr && formGroup.invalid && formGroup.controls.adresse.errors?.required?'is-invalid':''" />
+                <div class="text-danger"
+                    *ngIf="submitErr && formGroup.invalid && formGroup.controls.adresse.errors?.required">
+                    le champs adresse est obligatoire
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputCity">Telephone</label>
+                <input type="text" class="form-control" formControlName="telephone" maxlength="9"
+                    placeholder="entrez votre numero de telephone" id="champsTelephone"
+                    [ngClass]="erreurTelephone || formGroup.controls.telephone.errors?.erreurTelephone|| (submitErr && formGroup.invalid &&  formGroup.controls.telephone.errors?.required) ?'is-invalid':''" />
+                <div class="text-danger" *ngIf="erreurTelephone">
+                    le numero de telephone est déja utilisé
+                </div>
+                <div class="text-danger"
+                    *ngIf="submitErr && formGroup.invalid && formGroup.controls.telephone.errors?.required">
+                    le champs telephone est obligatoire
+                </div>
+                <div class="text-danger"
+                    *ngIf="formGroup.invalid && formGroup.controls.telephone.errors?.erreurTelephone">
+                    le numero de telephone est invalide il doit commencer par 77,76
+                </div>
+            </div>
+
+
+            <div class="form-group col-md-3">
+                <label for="inputzip">Mot de passe <span style="color: red ;">*</span></label>
+                <input type="password" class="form-control" formControlName="motDePasse"
+                    placeholder="entrez votre mot de passe"
+                    [ngClass]="submitErr && formGroup.invalid && formGroup.controls.motDePasse.errors?.required  ?'is-invalid':''"/>
+                    <div class="text-danger"
+                        *ngIf="submitErr && formGroup.invalid && formGroup.controls.motDePasse.errors?.required">
+                        le champs mot de passes est obligatoire
+                    </div>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="inputZip">Confirmer <span style="color: red ;">*</span></label>
+                <input type="password" class="form-control" formControlName="configmotDePasse"
+                    placeholder="confirmez votre mot de passe"
+                    [ngClass]="formGroup.controls.configmotDePasse.errors?.errorMp || (submitErr && formGroup.invalid && formGroup.controls.configmotDePasse.errors?.required)  ?'is-invalid':''" />
+            </div>
+
+            <div class="text-danger"
+                *ngIf="submitErr && formGroup.invalid && formGroup.controls.configmotDePasse.errors?.required">
+                le champs confimation mot de passe est obligatoire
+            </div>
+            <div class="text-danger" *ngIf="formGroup.invalid && formGroup.controls.configmotDePasse.errors?.errorMp">
+                les mot de passes ne sont pas les memes
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-4">Inscription</button>
+
+       <p><a routerLink="/connexion" class="text-primary">J'ai déja un compte</a></p>
     </form>
 </div>
