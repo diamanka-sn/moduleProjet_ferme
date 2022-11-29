@@ -39,8 +39,10 @@ export class HeaderComponent implements OnInit {
     this.utilisateur = this.servinfo.utilisateur
     console.log(this.utilisateur)
     // this.voirpanier()
-    
+    setTimeout(() => {
     this.getTaillePanier()
+      console.log("panier")
+    }, 1);
 
   }
 

@@ -62,7 +62,6 @@ export class ConnexionComponent implements OnInit {
           email: user.utilisateur.email,
           telephone: user.utilisateur.telephone,
           adresse: user.utilisateur.adresse
-
         }
         const roleuser = user.utilisateur.profile
         localStorage.setItem('807605274673228623802113__luxdev-access-token', user.token)
