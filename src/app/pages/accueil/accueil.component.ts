@@ -22,8 +22,9 @@ export class AccueilComponent implements OnInit {
   s: number = 0
   v: number = 0
   role!: any
+  succes: boolean = false
   // isAuth: boolean = false;
-
+  panier: any
   utilisateur!: any
 
   submitErr: boolean = false
@@ -89,7 +90,7 @@ export class AccueilComponent implements OnInit {
       if (this.formGroup.valid) {
         this.submitErr = false
         const quantite = parseInt(this.formGroup.value['quantite'])
-        var result = confirm("Voulez-vous commander"+ quantite +" de litres ?");
+        var result = confirm("Voulez-vous commander" + quantite + " de litres ?");
         if (result) {
           console.log(quantite)
           this.routes.navigate(['/client/finaliser-lait/' + quantite])
@@ -116,7 +117,12 @@ export class AccueilComponent implements OnInit {
           idBovin: m.idBovin,
         }
         this.com.ajouterPanier(donnees).subscribe(res => {
-          this.getAllbovins()
+          this.panier = res
+          if (!this.panier.err) {
+            this.getAllbovins()
+            this.succes = true
+          }
+           //console.log(this.panier.err)
         })
       }
     }

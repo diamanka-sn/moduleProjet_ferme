@@ -39,9 +39,17 @@ export class HeaderClientComponent implements OnInit {
     this.utilisateur = this.servinfo.utilisateur
     // console.log(this.utilisateur)
 
-
+    this.getTaillePanier()
   }
-
+  getTaillePanier() {
+    this.com.getPanier().subscribe(res => {
+      //this.panier = res[0]
+      this.taille = res[0].length
+      console.log(this.taille)
+      //  console.log(this.panier)
+      // this.route.navigate(['/panier'])
+    })
+  }
   deconnexion() {
     var result = confirm("Voulez-vous vous deconnecté ?");
     if (result) {
@@ -57,7 +65,7 @@ export class HeaderClientComponent implements OnInit {
         this.panier = res[0]
         this.taille = res[0].length
         console.log(this.taille)
-        console.log(this.panier)
+        // console.log(this.panier)
         this.route.navigate(['/panier'])
       })
     }

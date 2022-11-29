@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   role!: any
   i:number=0
   panier:any
-  taille:number = 0
+  taille!:number 
   constructor(private http: HttpClient,
     private bd: EnvoieService,
     private servinfo: InformationPersonnelleService,
@@ -38,6 +38,20 @@ export class HeaderComponent implements OnInit {
     this.role = getRole()
     this.utilisateur = this.servinfo.utilisateur
     console.log(this.utilisateur)
+    // this.voirpanier()
+    
+    this.getTaillePanier()
+
+  }
+
+  getTaillePanier() {
+    this.com.getPanier().subscribe(res => {
+      //this.panier = res[0]
+      this.taille = res[0].length
+      console.log(this.taille)
+      //  console.log(this.panier)
+      // this.route.navigate(['/panier'])
+    })
   }
 
   deconnexion(){
@@ -56,7 +70,7 @@ export class HeaderComponent implements OnInit {
         this.panier = res[0]
         this.taille = res[0].length
         console.log(this.taille)
-        console.log(this.panier)
+      //  console.log(this.panier)
         this.route.navigate(['/panier'])
       })
     }

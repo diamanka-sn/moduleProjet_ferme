@@ -38,12 +38,19 @@
             </div>
         </div>
     </div>
+    <div class="container mt-2 alert alert-success alert-dismissible fade show"  *ngIf="succes" role="alert">
+        <strong> bovin ajouter avec succes au panier</strong>
+        <button class="close" type="button" data-dismiss="alert" aria-label="close">
+         <span aria-hidden="">&times;</span>
+        </button>
+     </div>
 </section>
+
 <section class="section-name padding-y-sm">
     <div class="container">
         <header class="section-heading">
-            <a href="#" class="btn btn-outline-primary float-right">Voir tout</a>
             <h3 class="section-title">Bovins</h3>
+            
             <i class="fas fa-spinner fa-pulse" *ngIf="isLoading"></i>
         </header><!-- sect-heading -->
         <div *ngIf="bovins?.length !=0">
@@ -70,7 +77,6 @@
                     <img class="h-100 w-100" src="../../../assets/images/chariot.jpg" style="" />
                 </div>
                 <strong class="">Aucun bovin n'est en vente</strong>
-
             </div>
         </div>
         <!-- row.// -->

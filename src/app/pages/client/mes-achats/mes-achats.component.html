@@ -56,26 +56,26 @@
                     <strong>Historique Bovins</strong>
     
                     <hr />
-                    <i class="fas fa-spinner fa-pulse" *ngIf="isLoading"></i>
-                    <div>
-                        <div class="row" *ngFor="let p of b; let i=index">
-                            <div class="col-md-3">
-                                <img src="../../../../assets/images/bovin/{{i}}.jpg" height="70" width="70" />
-                            </div>
-                            <div class="col-md-9 te" style="">
-                                <div>
-                                    <strong>{{p.nom}} <span class="float-right">{{p.race}}</span></strong>
+                        <i class="fas fa-spinner fa-pulse" *ngIf="isLoading"></i>
+                        <div>
+                            <div class="row" *ngFor="let p of b; let i=index">
+                                <div class="col-md-3">
+                                    <img src="../../../../assets/images/bovin/{{i}}.jpg" height="70" width="70" />
+                                </div>
+                                <div class="col-md-9 te" style="">
                                     <div>
-                                        {{p.prix}} FCFA <span class="float-right">{{p.description}}</span>
+                                        <strong>{{p.nom}} <span class="float-right">{{p.race}}</span></strong>
+                                        <div>
+                                            {{p.prix}} FCFA <span class="float-right">{{p.description}}</span>
+                                        </div>
+                                        <strong>
+                                            {{p.date}}
+                                        </strong>
+                                        <hr />
                                     </div>
-                                    <strong>
-                                        {{p.date}}
-                                    </strong>
-                                    <hr />
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <div>
                         
                         <button class="btn btn-primary text-center white" style="color: white;" routerLink="/panier">Retour
