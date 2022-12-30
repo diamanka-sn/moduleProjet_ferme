@@ -7,4 +7,5 @@ export class User {
     email!: string;
     profile!: string;
     token!: string;
+    photo!:string
 }
